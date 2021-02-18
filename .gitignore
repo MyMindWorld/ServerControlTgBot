@@ -1,0 +1,6 @@
+# Project exclude paths
+/target/
+/.idea/
+/botDb.mv.db
+/botDb.trace.db
+*application-local.properties
