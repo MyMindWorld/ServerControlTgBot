@@ -20,4 +20,4 @@ fun String.toValidInlineLink() = this
     .replace("\\", "\\\\")
     .replace("            ", "")
 
-fun User.getUsernameOrInitials() = username?: firstName + lastName
+fun User.getUsernameOrInitials() = username?: "$firstName $lastName"
