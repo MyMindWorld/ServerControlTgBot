@@ -9,7 +9,7 @@ class Messages {
         fun unauthorized() = "У тебя нет прав на использование этого бота!".toValidTgMessage()
 
         fun serverStartedReport(user: User) =
-            "Сервер запущен пользователем : ".toValidTgMessage() + "[${user.getUsernameOrInitials()}](tg://user?id=${user.id}) ".toValidInlineLink()
+            "Сервер запущен пользователем\n".toValidTgMessage() + "[${user.getUsernameOrInitials()}](tg://user?id=${user.id}) ".toValidInlineLink()
                 .toValidInlineLink()
 
         fun serverStarted() = "Сервер запущен"
@@ -17,7 +17,7 @@ class Messages {
         fun serverAlreadyRunning() = "Действие возможно только при остановленном сервере".toValidTgMessage()
 
         fun serverStoppedReport(user: User) =
-            "Сервер остановлен пользователем : ".toValidTgMessage() + "[${user.getUsernameOrInitials()}](tg://user?id=${user.id}) ".toValidInlineLink()
+            "Сервер остановлен пользователем\n".toValidTgMessage() + "[${user.getUsernameOrInitials()}](tg://user?id=${user.id}) ".toValidInlineLink()
                 .toValidInlineLink()
 
         fun serverStopped() = "Сервер остановлен"

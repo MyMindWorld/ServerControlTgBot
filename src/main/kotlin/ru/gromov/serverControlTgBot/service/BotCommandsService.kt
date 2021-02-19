@@ -2,6 +2,7 @@ package ru.gromov.serverControlTgBot.service
 
 import com.github.kotlintelegrambot.Bot
 import com.github.kotlintelegrambot.entities.*
+import com.github.kotlintelegrambot.entities.keyboard.InlineKeyboardButton
 import com.github.kotlintelegrambot.entities.keyboard.KeyboardButton
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
@@ -138,5 +139,41 @@ class BotCommandsService @Autowired constructor(
             )
             throw IllegalStateException("Server should be stopped before update")
         }
+    }
+
+    fun showServerCommandsMarkup(message: Message) {
+        adminService.denyNotPrivilegedAndNotifyAdmin(message.from!!, message.text!!)
+
+        val inlineKeyboardMarkup = InlineKeyboardMarkup.create(
+            listOf(
+                InlineKeyboardButton.CallbackData(
+                    text = "Запустить",
+                    callbackData = "startServer"
+                ),
+                InlineKeyboardButton.CallbackData(
+                    text = "Сделать бекап",
+                    callbackData = "backupWorld"
+                ),
+                InlineKeyboardButton.CallbackData(
+                    text = "Статус",
+                    callbackData = "serverStatus"
+                )
+            ),
+            listOf(
+                InlineKeyboardButton.CallbackData(
+                    text = "Остановить",
+                    callbackData = "stopServer"
+                ),
+                InlineKeyboardButton.CallbackData(
+                    text = "Обновить",
+                    callbackData = "updateServer"
+                )
+            )
+        )
+        bot.sendMessage(
+            chatId = ChatId.fromId(message.chat.id),
+            text = "Команды управления сервером:",
+            replyMarkup = inlineKeyboardMarkup
+        )
     }
 }

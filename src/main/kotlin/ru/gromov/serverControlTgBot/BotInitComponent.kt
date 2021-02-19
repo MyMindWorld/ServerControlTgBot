@@ -40,37 +40,7 @@ class BotInitComponent @Autowired constructor(
                 }
 
                 text("Команды управления") {
-                    val inlineKeyboardMarkup = InlineKeyboardMarkup.create(
-                        listOf(
-                            InlineKeyboardButton.CallbackData(
-                                text = "Запустить сервер",
-                                callbackData = "startServer"
-                            ),
-                            InlineKeyboardButton.CallbackData(
-                                text = "Сделать бекап",
-                                callbackData = "backupWorld"
-                            ),
-                            InlineKeyboardButton.CallbackData(
-                                text = "Статус сервера",
-                                callbackData = "serverStatus"
-                            )
-                        ),
-                        listOf(
-                            InlineKeyboardButton.CallbackData(
-                                text = "Остановить сервер",
-                                callbackData = "stopServer"
-                            ),
-                            InlineKeyboardButton.CallbackData(
-                                text = "Обновить сервер",
-                                callbackData = "updateServer"
-                            )
-                        )
-                    )
-                    bot.sendMessage(
-                        chatId = ChatId.fromId(message.chat.id),
-                        text = "Команды:",
-                        replyMarkup = inlineKeyboardMarkup
-                    )
+                    botCommandsService.showServerCommandsMarkup(message)
                 }
 
 
